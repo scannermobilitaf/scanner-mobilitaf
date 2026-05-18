@@ -527,6 +527,20 @@ async function submitLead() {
   var axes = (r.axesPrioritaires||[]).join(' | ') || 'Non défini';
 
   try {
+    /* Envoi vers Zapier → Pipedrive */
+    fetch('https://hooks.zapier.com/hooks/catch/27646131/4o4rnlh/', {
+      method: 'POST',
+      body: JSON.stringify({
+        prenom: prenom, nom: nom, email: email,
+        entreprise: entreprise, tel: tel||'',
+        niveauTension: r.niveauTension||'', scoreTension: r.scoreTension||0,
+        economiesTotales: r.economiesTotales||0, co2Tonnes: r.co2Tonnes||0,
+        vehiculesEvites: r.vehiculesEvites||0, economieSalarie: r.economieSalarie||0,
+        axesPrioritaires: axes, salaries: r.salaries||'', sites: r.sites||'', secteur: r.secteur||''
+      })
+    });
+
+    /* Envoi vers Formspree → Email */
     var res = await fetch('https://formspree.io/f/mdajoqyz', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
