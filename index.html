@@ -506,9 +506,9 @@ function showResults() {
 }
 
 /* ═══════════════════════════════════════
-   SOUMISSION — REDIRECTION CONTACT
+   SOUMISSION → FORMSPREE → EMAIL
    ═══════════════════════════════════════ */
-function submitLead() {
+async function submitLead() {
   var prenom    = document.getElementById('f-prenom').value.trim();
   var nom       = document.getElementById('f-nom').value.trim();
   var email     = document.getElementById('f-email').value.trim();
@@ -523,23 +523,44 @@ function submitLead() {
   var sp =document.getElementById('btn-spinner');
   btn.disabled=true; lbl.textContent='Envoi en cours…'; sp.style.display='block'; hideMsg();
 
-  setTimeout(function() {
-    document.getElementById('results-section').style.display='none';
-    var ss=document.getElementById('success-screen');
-    ss.style.display='block'; ss.style.animation='fadeUp .4s ease';
-    window.scrollTo({top:0,behavior:'smooth'});
-    var r = scanResults || {};
-    var params = new URLSearchParams({
-      prenom: prenom, nom: nom, email: email,
-      entreprise: entreprise, tel: tel||'',
-      tension: r.niveauTension||'', economies: r.economiesTotales||'',
-      co2: r.co2Tonnes||'', vehicules: r.vehiculesEvites||'',
-      secteur: r.secteur||''
+  var r = scanResults || {};
+  var axes = (r.axesPrioritaires||[]).join(' | ') || 'Non défini';
+
+  try {
+    var res = await fetch('https://formspree.io/f/mdajoqyz', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        '📋 Prénom':          prenom,
+        '📋 Nom':             nom,
+        '📧 Email':           email,
+        '🏢 Entreprise':      entreprise,
+        '📞 Téléphone':       tel || 'Non renseigné',
+        '⚡ Niveau tension':  (r.niveauTension||'?') + ' (' + (r.scoreTension||'?') + '/100)',
+        '💶 Économies/an':    (r.economiesTotales||0).toLocaleString('fr-FR') + ' €',
+        '🌱 CO₂ évité/an':    (r.co2Tonnes||0) + ' tonnes',
+        '🚗 Véhicules/jour':  r.vehiculesEvites||0,
+        '👤 Économie/salarié':(r.economieSalarie||0).toLocaleString('fr-FR') + ' €',
+        '🎯 Axes prioritaires': axes,
+        '👥 Collaborateurs':  '~' + (r.salaries||'?'),
+        '🏭 Sites':           r.sites||'?',
+        '🏗 Secteur':         r.secteur||'?',
+        '_subject': '🚀 Nouveau lead Scanner Mobilitaf — ' + entreprise
+      })
     });
-    setTimeout(function() {
-      window.open('https://mobilitaf.com/contact/?' + params.toString(), '_blank');
-    }, 1500);
-  }, 600);
+
+    if (res.ok) {
+      document.getElementById('results-section').style.display='none';
+      var ss=document.getElementById('success-screen');
+      ss.style.display='block'; ss.style.animation='fadeUp .4s ease';
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      throw new Error('Erreur envoi');
+    }
+  } catch(err) {
+    showMsg('Une erreur est survenue. Contactez directement <a href="mailto:contact@mobilitaf.com" style="color:#ffb3aa">contact@mobilitaf.com</a>.','error');
+    btn.disabled=false; lbl.textContent='Réserver ma visio de présentation →'; sp.style.display='none';
+  }
 }
 
 function showMsg(html,type){var el=document.getElementById('form-message');el.innerHTML=html;el.className='form-message '+type;el.style.display='block';}
