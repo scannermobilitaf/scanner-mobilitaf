@@ -7,7 +7,7 @@
   <meta name="description" content="Évaluez en 3 minutes votre potentiel d'optimisation mobilité : coûts, CO₂ et tensions organisationnelles.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -20,15 +20,15 @@
     }
     html{scroll-behavior:smooth}
     body{font-family:'DM Sans',sans-serif;background:var(--surface-2);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
-    h1,h2,h3{font-family:'Syne',sans-serif}
+    h1,h2,h3{font-family:'League Spartan',sans-serif}
     .scanner{max-width:680px;margin:0 auto;padding:2.5rem 1.25rem 5rem}
 
     .scanner-header{text-align:center;margin-bottom:2.5rem}
     .logo-wrap{margin-bottom:1.75rem}
-    .logo-wrap img{height:68px;width:auto;display:inline-block}
+    .logo-wrap img{height:52px;width:auto;display:inline-block}
     .scanner-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);border:1px solid #b8e0b3;border-radius:20px;padding:4px 14px;font-size:12px;font-weight:500;color:var(--green-dark);margin-bottom:1rem}
     .badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%}
-    .scanner-title{font-size:clamp(24px,4vw,32px);font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:.75rem}
+    .scanner-title{font-size:clamp(22px,4vw,30px);font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:.75rem}
     .scanner-sub{font-size:15px;color:var(--ink-mid);max-width:440px;margin:0 auto;line-height:1.6}
 
     .progress-wrap{margin-bottom:2rem}
@@ -40,7 +40,7 @@
 
     .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 2rem 1.75rem;margin-bottom:1rem;box-shadow:var(--shadow)}
     .step-eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:1.25rem}
-    .step-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--navy);background:var(--navy-light);padding:3px 10px;border-radius:20px;text-transform:uppercase}
+    .step-num{font-family:'League Spartan',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--navy);background:var(--navy-light);padding:3px 10px;border-radius:20px;text-transform:uppercase}
     .step-title{font-size:19px;font-weight:700;color:var(--navy);margin-bottom:.4rem}
     .step-desc{font-size:13px;color:var(--ink-muted);margin-bottom:1.75rem;line-height:1.55}
     .q-block{margin-bottom:1.75rem}.q-block:last-child{margin-bottom:0}
@@ -57,7 +57,7 @@
     .radio-opt input:checked+label .radio-bullet{border-color:var(--green);background:var(--green);box-shadow:inset 0 0 0 3px white}
 
     .slider-wrap{margin-top:4px}
-    .slider-val-display{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--navy);margin-bottom:.5rem}
+    .slider-val-display{font-family:'League Spartan',sans-serif;font-size:32px;font-weight:800;color:var(--navy);margin-bottom:.5rem}
     input[type=range]{-webkit-appearance:none;width:100%;height:5px;background:var(--border);border-radius:3px;outline:none;cursor:pointer}
     input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--navy);border:3px solid white;box-shadow:0 0 0 1px var(--navy);cursor:pointer}
     input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--navy);border:3px solid white;cursor:pointer}
@@ -79,10 +79,28 @@
     .btn-ghost{background:transparent;color:var(--ink-mid)}.btn-ghost:hover{background:var(--surface-3);border-color:#a0b8cc}
     .btn-primary{background:var(--navy);color:white;border-color:var(--navy)}.btn-primary:hover{background:var(--navy-mid)}
 
+    /* ── FORMULAIRE AVANT RÉSULTATS ── */
+    .gate-section{display:none}
+    .gate-card{background:var(--navy);border-radius:var(--radius);padding:2.25rem 2rem 2rem;box-shadow:0 4px 24px rgba(12,44,76,.2)}
+    .gate-pretitle{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem}
+    .gate-title{font-family:'League Spartan',sans-serif;font-size:22px;font-weight:800;color:white;margin-bottom:.5rem;line-height:1.25}
+    .gate-sub{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:1.5rem}
+    .gate-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+    .gate-group{display:flex;flex-direction:column;gap:5px}
+    .gate-group.full{grid-column:1/-1}
+    .gate-group label{font-size:11px;font-weight:500;color:rgba(255,255,255,.55);letter-spacing:.05em;text-transform:uppercase}
+    .gate-group input{padding:10px 13px;border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:14px;color:white;background:rgba(255,255,255,.1);outline:none;transition:border .15s}
+    .gate-group input:focus{border-color:var(--green)}
+    .gate-group input::placeholder{color:rgba(255,255,255,.3)}
+    .btn-gate{font-family:'League Spartan',sans-serif;font-size:15px;font-weight:700;padding:15px 28px;border-radius:var(--radius-sm);background:var(--green);color:white;border:none;cursor:pointer;width:100%;transition:all .15s;letter-spacing:.02em;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px}
+    .btn-gate:hover{background:var(--green-dark)}.btn-gate:disabled{opacity:.6;cursor:not-allowed}
+    .gate-rgpd{font-size:11px;color:rgba(255,255,255,.35);line-height:1.5;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.12)}
+    .gate-error{font-size:13px;text-align:center;padding:10px 14px;border-radius:var(--radius-sm);margin-top:10px;display:none;background:rgba(224,58,42,.18);color:#ffb3aa;border:1px solid rgba(224,58,42,.3)}
+
     .results-hidden{display:none}
     .results-hero{text-align:center;padding:2rem 1.5rem 1.75rem;background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--navy);border-radius:var(--radius);margin-bottom:1rem;box-shadow:var(--shadow)}
     .tension-eyebrow{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:.5rem}
-    .tension-badge{display:inline-block;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;padding:6px 20px;border-radius:20px;letter-spacing:.04em;margin-bottom:1.25rem}
+    .tension-badge{display:inline-block;font-family:'League Spartan',sans-serif;font-size:15px;font-weight:700;padding:6px 20px;border-radius:20px;letter-spacing:.04em;margin-bottom:1.25rem}
     .tension-gauge{width:100%;max-width:340px;margin:0 auto 1.25rem}
     .gauge-track{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
     .gauge-fill{height:100%;border-radius:4px;width:0;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
@@ -99,39 +117,27 @@
     .kpi-card:nth-child(3){animation-delay:.15s}.kpi-card:nth-child(4){animation-delay:.2s}
     .kpi-icon{font-size:22px;margin-bottom:.6rem}
     .kpi-prefix{font-size:11px;color:var(--ink-muted);margin-bottom:3px;font-style:italic}
-    .kpi-val{font-family:'Syne',sans-serif;font-size:clamp(20px,3vw,26px);font-weight:800;color:var(--navy);line-height:1;margin-bottom:.3rem}
+    .kpi-val{font-family:'League Spartan',sans-serif;font-size:28px;font-weight:800;color:var(--navy);line-height:1;margin-bottom:.3rem}
     .kpi-unit{font-size:12px;color:var(--ink-muted);line-height:1.4}
 
     .axes-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;box-shadow:var(--shadow)}
-    .axes-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:1rem}
+    .axes-title{font-family:'League Spartan',sans-serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:1rem}
     .axes-list{display:flex;flex-direction:column;gap:8px}
     .axe-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--navy-pale);border-radius:var(--radius-sm);font-size:13px;color:var(--ink-mid);font-weight:500;border-left:3px solid var(--navy)}
     .axe-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
 
     .disclaimer{font-size:11px;color:var(--ink-muted);line-height:1.6;padding:1rem 1.25rem;background:var(--surface-3);border-radius:var(--radius-sm);border-left:3px solid var(--border);margin-bottom:1rem}
 
-    .form-card{background:var(--navy);border-radius:var(--radius);padding:2rem;margin-bottom:1rem;box-shadow:0 4px 24px rgba(12,44,76,.18)}
-    .form-pretitle{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem}
-    .form-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:white;margin-bottom:.4rem;line-height:1.25}
-    .form-sub{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:1.5rem}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-    .form-group{display:flex;flex-direction:column;gap:5px}
-    .form-group.full{grid-column:1/-1}
-    .form-group label{font-size:11px;font-weight:500;color:rgba(255,255,255,.55);letter-spacing:.05em;text-transform:uppercase}
-    .form-group input{padding:10px 13px;border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:14px;color:white;background:rgba(255,255,255,.1);outline:none;transition:border .15s}
-    .form-group input:focus{border-color:var(--green)}
-    .form-group input::placeholder{color:rgba(255,255,255,.3)}
-    .btn-submit{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;padding:15px 28px;border-radius:var(--radius-sm);background:var(--green);color:white;border:none;cursor:pointer;width:100%;transition:all .15s;letter-spacing:.02em;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px}
-    .btn-submit:hover{background:var(--green-dark)}.btn-submit:disabled{opacity:.6;cursor:not-allowed}
-    .spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.35);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .rgpd{font-size:11px;color:rgba(255,255,255,.35);line-height:1.5;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.12)}
-    .form-message{font-size:13px;text-align:center;padding:10px 14px;border-radius:var(--radius-sm);margin-top:10px;display:none;line-height:1.5}
-    .form-message.error{background:rgba(224,58,42,.18);color:#ffb3aa;border:1px solid rgba(224,58,42,.3)}
+    .cta-card{background:var(--navy);border-radius:var(--radius);padding:2rem;margin-bottom:1rem;box-shadow:0 4px 24px rgba(12,44,76,.18);text-align:center}
+    .cta-pretitle{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem}
+    .cta-title{font-family:'League Spartan',sans-serif;font-size:20px;font-weight:800;color:white;margin-bottom:.4rem;line-height:1.25}
+    .cta-sub{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:1.5rem}
+    .btn-cta{font-family:'League Spartan',sans-serif;font-size:15px;font-weight:700;padding:15px 28px;border-radius:var(--radius-sm);background:var(--green);color:white;border:none;cursor:pointer;width:100%;transition:all .15s;letter-spacing:.02em;display:inline-block;text-decoration:none;text-align:center}
+    .btn-cta:hover{background:var(--green-dark)}
 
     .success-screen{display:none;text-align:center;padding:3rem 1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
     .success-icon-wrap{width:64px;height:64px;background:var(--green-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:30px}
-    .success-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--navy);margin-bottom:.75rem}
+    .success-title{font-family:'League Spartan',sans-serif;font-size:22px;font-weight:800;color:var(--navy);margin-bottom:.75rem}
     .success-sub{font-size:14px;color:var(--ink-mid);line-height:1.6;max-width:380px;margin:0 auto 1.5rem}
     .success-tag{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:500;color:var(--green-dark)}
     .scanner-footer{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
@@ -144,8 +150,8 @@
       .scanner{padding:1.5rem 1rem 4rem}
       .radio-grid{grid-template-columns:1fr}.radio-grid.cols-3{grid-template-columns:1fr 1fr}
       .kpi-grid{grid-template-columns:1fr}
-      .card,.form-card{padding:1.5rem 1.25rem}
-      .form-grid{grid-template-columns:1fr}
+      .card,.gate-card{padding:1.5rem 1.25rem}
+      .gate-grid{grid-template-columns:1fr}
       .progress-step-label{font-size:9px}
     }
   </style>
@@ -153,16 +159,22 @@
 <body>
 <main class="scanner" id="app">
 
-  <header class="scanner-header">
-    <div class="logo-wrap">
-      <img src="data:image/jpeg;base64,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" alt="Mobilitaf — Simplifiez les trajets de vos employés">
-    </div>
-    <div class="scanner-badge"><span class="badge-dot"></span>3 minutes · Résultat instantané · Gratuit</div>
-    <h1 class="scanner-title">Scanner mobilité<br>entreprise</h1>
-    <p class="scanner-sub">Évaluez votre potentiel d'optimisation mobilité : coûts, CO₂ et tensions organisationnelles.</p>
-  </header>
-
+  <!-- ═══════════════════════════════
+       QUIZ SECTION
+  ═══════════════════════════════ -->
   <div id="quiz-section">
+
+    <header class="scanner-header">
+      <div class="logo-wrap">
+        <img src="https://mobilitaf.com/wp-content/uploads/2025/03/mobilitaf-logo.svg"
+             alt="Mobilitaf"
+             onerror="this.onerror=null;this.src='https://mobilitaf.com/wp-content/uploads/2023/10/logo.svg'">
+      </div>
+      <div class="scanner-badge"><span class="badge-dot"></span>3 minutes · Résultat instantané · Gratuit</div>
+      <h1 class="scanner-title">Combien vous coûte vraiment<br>la mobilité de vos salariés ?</h1>
+      <p class="scanner-sub">Évaluez votre potentiel d'optimisation mobilité : coûts, CO₂ et tensions organisationnelles.</p>
+    </header>
+
     <div class="progress-wrap">
       <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:25%"></div></div>
       <div class="progress-labels">
@@ -322,12 +334,39 @@
       </div>
       <div class="nav-row">
         <button class="btn btn-ghost" onclick="goStep(2)">← Précédent</button>
-        <button class="btn btn-primary" onclick="showResults()">Voir mes résultats →</button>
+        <button class="btn btn-primary" onclick="showGate()">Voir mes résultats →</button>
       </div>
     </div>
-  </div>
 
+    <!-- ── GATE : FORMULAIRE AVANT RÉSULTATS ── -->
+    <div id="gate-section" class="gate-section">
+      <div class="gate-card">
+        <p class="gate-pretitle">Dernière étape</p>
+        <h3 class="gate-title">Votre diagnostic est prêt</h3>
+        <p class="gate-sub">Renseignez vos coordonnées pour accéder à vos résultats et recevoir votre synthèse par email.</p>
+        <div class="gate-grid">
+          <div class="gate-group"><label>Prénom *</label><input type="text" id="g-prenom" placeholder="Marie" autocomplete="given-name"></div>
+          <div class="gate-group"><label>Nom *</label><input type="text" id="g-nom" placeholder="Martin" autocomplete="family-name"></div>
+          <div class="gate-group full"><label>Entreprise *</label><input type="text" id="g-entreprise" placeholder="Nom de votre organisation" autocomplete="organization"></div>
+          <div class="gate-group full"><label>Email professionnel *</label><input type="email" id="g-email" placeholder="marie.martin@entreprise.fr" autocomplete="email"></div>
+          <div class="gate-group full"><label>Téléphone <span style="opacity:.45;font-weight:400">(optionnel)</span></label><input type="tel" id="g-tel" placeholder="+33 6 00 00 00 00" autocomplete="tel"></div>
+        </div>
+        <button class="btn-gate" id="gate-btn" onclick="submitGate()">
+          <span id="gate-btn-label">Accéder à mes résultats →</span>
+          <span id="gate-spinner" style="display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,.35);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite"></span>
+        </button>
+        <div class="gate-error" id="gate-error"></div>
+        <p class="gate-rgpd">🔒 Vos données sont transmises de manière sécurisée et utilisées uniquement pour vous recontacter dans le cadre de cette demande. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données en écrivant à <a href="mailto:contact@mobilitaf.com" style="color:rgba(255,255,255,.5)">contact@mobilitaf.com</a>.</p>
+      </div>
+    </div>
+
+  </div><!-- fin quiz-section -->
+
+  <!-- ═══════════════════════════════
+       RÉSULTATS SECTION
+  ═══════════════════════════════ -->
   <div id="results-section" class="results-hidden">
+
     <div class="results-hero">
       <p class="tension-eyebrow">Votre niveau de tension mobilité</p>
       <div><span class="tension-badge" id="tension-badge"></span></div>
@@ -354,23 +393,11 @@
       Ces résultats constituent une estimation basée sur les données renseignées et les hypothèses moyennes observées sur des organisations comparables. Les montants affichés utilisent le scénario d'adoption à 20 % et le ratio de mutualisation 1 véhicule / 4 personnes. Chiffres indicatifs, non contractuels.
     </div>
 
-    <div class="form-card" id="form-section">
-      <p class="form-pretitle">Prochaine étape</p>
-      <h3 class="form-title">Réservez votre visio de présentation Mobilitaf</h3>
-      <p class="form-sub">Un expert analyse vos résultats et vous présente en 30 minutes comment transformer ce potentiel en gains concrets pour votre organisation.</p>
-      <div class="form-grid">
-        <div class="form-group"><label>Prénom *</label><input type="text" id="f-prenom" placeholder="Marie" autocomplete="given-name"></div>
-        <div class="form-group"><label>Nom *</label><input type="text" id="f-nom" placeholder="Martin" autocomplete="family-name"></div>
-        <div class="form-group full"><label>Email professionnel *</label><input type="email" id="f-email" placeholder="marie.martin@entreprise.fr" autocomplete="email"></div>
-        <div class="form-group full"><label>Entreprise *</label><input type="text" id="f-entreprise" placeholder="Nom de votre organisation" autocomplete="organization"></div>
-        <div class="form-group full"><label>Téléphone <span style="opacity:.45;font-weight:400">(optionnel)</span></label><input type="tel" id="f-tel" placeholder="+33 6 00 00 00 00" autocomplete="tel"></div>
-      </div>
-      <button class="btn-submit" id="submit-btn" onclick="submitLead()">
-        <span id="btn-label">Réserver ma visio de présentation →</span>
-        <span class="spinner" id="btn-spinner"></span>
-      </button>
-      <div class="form-message" id="form-message"></div>
-      <p class="rgpd">🔒 Vos données sont transmises de manière sécurisée et utilisées uniquement pour vous recontacter dans le cadre de cette demande. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression.</p>
+    <div class="cta-card">
+      <p class="cta-pretitle">Prochaine étape</p>
+      <h3 class="cta-title">Réservez votre visio de présentation Mobilitaf</h3>
+      <p class="cta-sub">Un expert analyse vos résultats et vous présente en 30 minutes comment transformer ce potentiel en gains concrets pour votre organisation.</p>
+      <a href="https://calendly.com/contact-mobilitaf/30min" target="_blank" class="btn-cta">Réserver ma visio gratuite →</a>
     </div>
 
     <footer class="scanner-footer"><p>© 2025 Mobilitaf — Simplifiez les trajets de vos employés</p></footer>
@@ -378,8 +405,8 @@
 
   <div class="success-screen" id="success-screen">
     <div class="success-icon-wrap">✅</div>
-    <h2 class="success-title">Demande envoyée !</h2>
-    <p class="success-sub">Un expert Mobilitaf vous contacte sous 24h pour planifier votre visio de présentation personnalisée.</p>
+    <h2 class="success-title">Merci !</h2>
+    <p class="success-sub">Vos résultats sont disponibles ci-dessous. Un expert Mobilitaf peut aussi vous contacter pour approfondir l'analyse.</p>
     <span class="success-tag">🌿 Merci de simplifier les trajets de vos employés</span>
   </div>
 
@@ -387,16 +414,27 @@
 
 <script>
 /* ═══════════════════════════════════════
-   NETLIFY FUNCTION — PROXY PIPEDRIVE
+   TRACKING VISITEURS (au chargement)
+   → Zapier webhook compteur visites
    ═══════════════════════════════════════ */
-/* URL Make — à activer quand Make est configuré */
-/* var BACKEND_URL = 'https://hook.eu1.make.com/ki38vwqfuy7a3m5azmngqy8028xpxzlw'; */
+window.addEventListener('load', function() {
+  fetch('https://hooks.zapier.com/hooks/catch/27646131/4o4rnlh/', {
+    method: 'POST',
+    body: JSON.stringify({
+      event: 'scanner_visit',
+      timestamp: new Date().toISOString(),
+      url: window.location.href,
+      referrer: document.referrer || 'direct'
+    })
+  }).catch(function(){});
+});
 
 /* ═══════════════════════════════════════
    STATE
    ═══════════════════════════════════════ */
 var currentStep = 0;
 var scanResults = {};
+var leadData    = {};
 
 /* ═══════════════════════════════════════
    SLIDER
@@ -426,9 +464,101 @@ function getSlider(id) { return parseFloat(document.getElementById(id).value); }
 function fmt(n) { return Math.round(n).toLocaleString('fr-FR'); }
 
 /* ═══════════════════════════════════════
-   CALCULS & RÉSULTATS
+   GATE : affichage formulaire avant résultats
    ═══════════════════════════════════════ */
-function showResults() {
+function showGate() {
+  // Calcul en avance pour stocker les résultats
+  computeResults();
+  // Masquer step-3, afficher gate
+  document.getElementById('step-3').style.display = 'none';
+  var gate = document.getElementById('gate-section');
+  gate.style.display = 'block';
+  gate.style.animation = 'fadeUp .3s ease';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ═══════════════════════════════════════
+   GATE : soumission formulaire
+   ═══════════════════════════════════════ */
+async function submitGate() {
+  var prenom     = document.getElementById('g-prenom').value.trim();
+  var nom        = document.getElementById('g-nom').value.trim();
+  var entreprise = document.getElementById('g-entreprise').value.trim();
+  var email      = document.getElementById('g-email').value.trim();
+  var tel        = document.getElementById('g-tel').value.trim();
+
+  var err = document.getElementById('gate-error');
+  if (!prenom||!nom||!entreprise||!email) { showGateError('Merci de renseigner tous les champs obligatoires (*).'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showGateError('Adresse email invalide.'); return; }
+
+  var btn = document.getElementById('gate-btn');
+  var lbl = document.getElementById('gate-btn-label');
+  var sp  = document.getElementById('gate-spinner');
+  btn.disabled=true; lbl.textContent='Envoi en cours…'; sp.style.display='inline-block'; err.style.display='none';
+
+  leadData = { prenom:prenom, nom:nom, entreprise:entreprise, email:email, tel:tel||'' };
+
+  var r    = scanResults;
+  var axes = (r.axesPrioritaires||[]).join(' | ') || 'Non défini';
+
+  try {
+    // Zapier → Pipedrive
+    fetch('https://hooks.zapier.com/hooks/catch/27646131/4o4rnlh/', {
+      method: 'POST',
+      body: JSON.stringify({
+        event: 'scanner_lead',
+        prenom:prenom, nom:nom, email:email,
+        entreprise:entreprise, tel:tel||'',
+        niveauTension:r.niveauTension||'', scoreTension:r.scoreTension||0,
+        economiesTotales:r.economiesTotales||0, co2Tonnes:r.co2Tonnes||0,
+        vehiculesEvites:r.vehiculesEvites||0, economieSalarie:r.economieSalarie||0,
+        axesPrioritaires:axes, salaries:r.salaries||'', sites:r.sites||'', secteur:r.secteur||''
+      })
+    });
+
+    // Formspree → Email
+    var res = await fetch('https://formspree.io/f/mdajoqyz', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        '📋 Prénom':prenom,'📋 Nom':nom,'📧 Email':email,
+        '🏢 Entreprise':entreprise,'📞 Téléphone':tel||'Non renseigné',
+        '⚡ Niveau tension':(r.niveauTension||'?')+' ('+(r.scoreTension||'?')+'/100)',
+        '💶 Économies/an':(r.economiesTotales||0).toLocaleString('fr-FR')+' €',
+        '🌱 CO₂ évité/an':(r.co2Tonnes||0)+' tonnes',
+        '🚗 Véhicules/jour':r.vehiculesEvites||0,
+        '👤 Économie/salarié':(r.economieSalarie||0).toLocaleString('fr-FR')+' €',
+        '🎯 Axes prioritaires':axes,
+        '👥 Collaborateurs':'~'+(r.salaries||'?'),
+        '🏭 Sites':r.sites||'?','🏗 Secteur':r.secteur||'?',
+        '_subject':'🚀 Nouveau lead Scanner Mobilitaf — '+entreprise
+      })
+    });
+
+    if (res.ok) {
+      // Afficher les résultats
+      document.getElementById('quiz-section').style.display='none';
+      document.getElementById('results-section').classList.remove('results-hidden');
+      renderResults();
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      throw new Error('Erreur envoi');
+    }
+  } catch(e) {
+    btn.disabled=false; lbl.textContent='Accéder à mes résultats →'; sp.style.display='none';
+    showGateError('Une erreur est survenue. Réessayez ou écrivez à <a href="mailto:contact@mobilitaf.com" style="color:#ffb3aa">contact@mobilitaf.com</a>.');
+  }
+}
+
+function showGateError(html) {
+  var el = document.getElementById('gate-error');
+  el.innerHTML = html; el.style.display = 'block';
+}
+
+/* ═══════════════════════════════════════
+   CALCULS
+   ═══════════════════════════════════════ */
+function computeResults() {
   var salaries    = parseFloat(getVal('salaries')    || 350);
   var sites       = parseFloat(getVal('sites')       || 3);
   var carPct      = getSlider('car-pct') / 100;
@@ -443,12 +573,12 @@ function showResults() {
   var orga_aucun  = document.getElementById('o5').checked;
   var secteur     = getVal('secteur') || 'Non précisé';
 
-  var joursAn=220, coutKm=0.18, adoption=0.20, tauxOcc=4, redVeh=0.75, redIS=0.70, co2Trajet=6;
+  var joursAn=220,coutKm=0.18,adoption=0.20,tauxOcc=4,redVeh=0.75,redIS=0.70,co2Trajet=6;
 
   var econDT    = salaries * distanceAR * joursAn * coutKm * carPct * adoption * redVeh;
   var co2Tonnes = (salaries * adoption * joursAn * co2Trajet) / 1000;
   var vehicDT   = Math.round(salaries * carPct * adoption * redVeh);
-  var econIS=0, vehicIS=0;
+  var econIS=0,vehicIS=0;
   if (intersites>0 && flotte>0) { var d=[0,24,48,176][intersites]||0; econIS=flotte*d*40*coutKm*redIS; vehicIS=Math.round(flotte*redIS); }
   var econTotale = econDT + econIS;
   var vehicTotal = vehicDT + vehicIS;
@@ -465,12 +595,6 @@ function showResults() {
   if (salaries>=700) score=Math.min(score*1.2,100);
   score=Math.min(Math.round(score),100);
 
-  var lv,col,bg,txt,gpct,gcol;
-  if (score<=25)      {lv='Faible';   col='#449338';bg='#eaf6e8';gpct=18;gcol='#61b454';txt='Votre organisation présente peu de tensions mobilité visibles. Un scanner plus fin révèle souvent des gisements d\'optimisation cachés.';}
-  else if (score<=50) {lv='Modéré';   col='#9a6b0a';bg='#fef3dc';gpct=45;gcol='#e8a020';txt='Votre organisation présente plusieurs facteurs de tension mobilité. Un accompagnement ciblé peut générer des gains significatifs.';}
-  else if (score<=75) {lv='Élevé';    col='#b84020';bg='#fdeee8';gpct=70;gcol='#e05a2a';txt='Votre organisation cumule plusieurs sources de coûts et de tensions mobilité. Le potentiel d\'optimisation est significatif et directement mesurable.';}
-  else                {lv='Critique'; col='#a32d2d';bg='#fce8e8';gpct=92;gcol='#d03030';txt='Votre organisation présente un niveau de tension mobilité critique. L\'impact d\'une solution Mobilitaf peut être immédiat.';}
-
   var axesDef=[
     {cond:carPct>0.3,label:'Domicile-travail : covoiturage & mutualisation'},
     {cond:intersites>=2,label:'Déplacements inter-sites : organisation & traçabilité'},
@@ -481,106 +605,51 @@ function showResults() {
   ];
   var axes=axesDef.filter(function(a){return a.cond;}).slice(0,3);
 
-  /* Stockage pour soumission Pipedrive */
+  var lv,col,bg,gpct,gcol,txt;
+  if (score<=25)      {lv='Faible';   col='#449338';bg='#eaf6e8';gpct=18;gcol='#61b454';txt='Votre organisation présente peu de tensions mobilité visibles. Un scanner plus fin révèle souvent des gisements d\'optimisation cachés.';}
+  else if (score<=50) {lv='Modéré';   col='#9a6b0a';bg='#fef3dc';gpct=45;gcol='#e8a020';txt='Votre organisation présente plusieurs facteurs de tension mobilité. Un accompagnement ciblé peut générer des gains significatifs.';}
+  else if (score<=75) {lv='Élevé';    col='#b84020';bg='#fdeee8';gpct=70;gcol='#e05a2a';txt='Votre organisation cumule plusieurs sources de coûts et de tensions mobilité. Le potentiel d\'optimisation est significatif et directement mesurable.';}
+  else                {lv='Critique'; col='#a32d2d';bg='#fce8e8';gpct=92;gcol='#d03030';txt='Votre organisation présente un niveau de tension mobilité critique. L\'impact d\'une solution Mobilitaf peut être immédiat.';}
+
   scanResults = {
-    niveauTension:lv, scoreTension:score,
+    niveauTension:lv, scoreTension:score, tensionCol:col, tensionBg:bg, tensionGpct:gpct, tensionGcol:gcol, tensionTxt:txt,
     economiesTotales:Math.round(econTotale), co2Tonnes:Math.round(co2Tonnes*10)/10,
     vehiculesEvites:vehicTotal, economieSalarie:Math.round(econSal),
     axesPrioritaires:axes.map(function(a){return a.label;}),
     salaries:salaries, sites:sites, secteur:secteur,
     carPct:Math.round(carPct*100)+'%', distance:distVal+' km', flotte:flotte
   };
-
-  document.getElementById('quiz-section').style.display='none';
-  document.getElementById('results-section').classList.remove('results-hidden');
-  var badge=document.getElementById('tension-badge'); badge.textContent=lv; badge.style.background=bg; badge.style.color=col;
-  setTimeout(function(){var gf=document.getElementById('gauge-fill');gf.style.width=gpct+'%';gf.style.background=gcol;},100);
-  document.getElementById('tension-text').textContent=txt;
-  document.getElementById('kpi-eco').textContent=fmt(econTotale);
-  document.getElementById('kpi-co2').textContent=Math.round(co2Tonnes*10)/10;
-  document.getElementById('kpi-veh').textContent=vehicTotal;
-  document.getElementById('kpi-sal').textContent=fmt(econSal);
-  var al=document.getElementById('axes-list');
-  al.innerHTML=axes.length?axes.map(function(a){return '<div class="axe-item"><span class="axe-dot"></span>'+a.label+'</div>';}).join(''):'<div class="axe-item"><span class="axe-dot"></span>Organisation mobilité globalement bien structurée</div>';
-  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 /* ═══════════════════════════════════════
-   SOUMISSION → FORMSPREE → EMAIL
+   AFFICHAGE RÉSULTATS
    ═══════════════════════════════════════ */
-async function submitLead() {
-  var prenom    = document.getElementById('f-prenom').value.trim();
-  var nom       = document.getElementById('f-nom').value.trim();
-  var email     = document.getElementById('f-email').value.trim();
-  var entreprise= document.getElementById('f-entreprise').value.trim();
-  var tel       = document.getElementById('f-tel').value.trim();
-
-  if (!prenom||!nom||!email||!entreprise) { showMsg('Merci de renseigner les champs obligatoires (*).','error'); return; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showMsg('Adresse email invalide.','error'); return; }
-
-  var btn=document.getElementById('submit-btn');
-  var lbl=document.getElementById('btn-label');
-  var sp =document.getElementById('btn-spinner');
-  btn.disabled=true; lbl.textContent='Envoi en cours…'; sp.style.display='block'; hideMsg();
-
-  var r = scanResults || {};
-  var axes = (r.axesPrioritaires||[]).join(' | ') || 'Non défini';
-
-  try {
-    /* Envoi vers Zapier → Pipedrive */
-    fetch('https://hooks.zapier.com/hooks/catch/27646131/4o4rnlh/', {
-      method: 'POST',
-      body: JSON.stringify({
-        prenom: prenom, nom: nom, email: email,
-        entreprise: entreprise, tel: tel||'',
-        niveauTension: r.niveauTension||'', scoreTension: r.scoreTension||0,
-        economiesTotales: r.economiesTotales||0, co2Tonnes: r.co2Tonnes||0,
-        vehiculesEvites: r.vehiculesEvites||0, economieSalarie: r.economieSalarie||0,
-        axesPrioritaires: axes, salaries: r.salaries||'', sites: r.sites||'', secteur: r.secteur||''
-      })
-    });
-
-    /* Envoi vers Formspree → Email */
-    var res = await fetch('https://formspree.io/f/mdajoqyz', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        '📋 Prénom':          prenom,
-        '📋 Nom':             nom,
-        '📧 Email':           email,
-        '🏢 Entreprise':      entreprise,
-        '📞 Téléphone':       tel || 'Non renseigné',
-        '⚡ Niveau tension':  (r.niveauTension||'?') + ' (' + (r.scoreTension||'?') + '/100)',
-        '💶 Économies/an':    (r.economiesTotales||0).toLocaleString('fr-FR') + ' €',
-        '🌱 CO₂ évité/an':    (r.co2Tonnes||0) + ' tonnes',
-        '🚗 Véhicules/jour':  r.vehiculesEvites||0,
-        '👤 Économie/salarié':(r.economieSalarie||0).toLocaleString('fr-FR') + ' €',
-        '🎯 Axes prioritaires': axes,
-        '👥 Collaborateurs':  '~' + (r.salaries||'?'),
-        '🏭 Sites':           r.sites||'?',
-        '🏗 Secteur':         r.secteur||'?',
-        '_subject': '🚀 Nouveau lead Scanner Mobilitaf — ' + entreprise
-      })
-    });
-
-    if (res.ok) {
-      document.getElementById('results-section').style.display='none';
-      var ss=document.getElementById('success-screen');
-      ss.style.display='block'; ss.style.animation='fadeUp .4s ease';
-      window.scrollTo({top:0,behavior:'smooth'});
-    } else {
-      throw new Error('Erreur envoi');
-    }
-  } catch(err) {
-    showMsg('Une erreur est survenue. Contactez directement <a href="mailto:contact@mobilitaf.com" style="color:#ffb3aa">contact@mobilitaf.com</a>.','error');
-    btn.disabled=false; lbl.textContent='Réserver ma visio de présentation →'; sp.style.display='none';
-  }
+function renderResults() {
+  var r = scanResults;
+  var badge=document.getElementById('tension-badge');
+  badge.textContent=r.niveauTension; badge.style.background=r.tensionBg; badge.style.color=r.tensionCol;
+  setTimeout(function(){var gf=document.getElementById('gauge-fill');gf.style.width=r.tensionGpct+'%';gf.style.background=r.tensionGcol;},100);
+  document.getElementById('tension-text').textContent=r.tensionTxt;
+  document.getElementById('kpi-eco').textContent=fmt(r.economiesTotales);
+  document.getElementById('kpi-co2').textContent=r.co2Tonnes;
+  document.getElementById('kpi-veh').textContent=r.vehiculesEvites;
+  document.getElementById('kpi-sal').textContent=fmt(r.economieSalarie);
+  var al=document.getElementById('axes-list');
+  var axLabels=r.axesPrioritaires||[];
+  al.innerHTML=axLabels.length?axLabels.map(function(l){return '<div class="axe-item"><span class="axe-dot"></span>'+l+'</div>';}).join(''):'<div class="axe-item"><span class="axe-dot"></span>Organisation mobilité globalement bien structurée</div>';
 }
 
-function showMsg(html,type){var el=document.getElementById('form-message');el.innerHTML=html;el.className='form-message '+type;el.style.display='block';}
-function hideMsg(){document.getElementById('form-message').style.display='none';}
+/* ═══════════════════════════════════════
+   INIT SLIDER
+   ═══════════════════════════════════════ */
+window.addEventListener('load',function(){
+  document.getElementById('car-pct').style.background='linear-gradient(to right,#0c2c4c 60%,#cddae8 60%)';
+});
 
-window.addEventListener('load',function(){document.getElementById('car-pct').style.background='linear-gradient(to right,#0c2c4c 60%,#cddae8 60%)';});
+/* spinner keyframes inline */
+var style=document.createElement('style');
+style.textContent='@keyframes spin{to{transform:rotate(360deg)}}';
+document.head.appendChild(style);
 </script>
 </body>
 </html>
